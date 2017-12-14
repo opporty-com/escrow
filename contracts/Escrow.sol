@@ -125,12 +125,24 @@ contract Escrow is Ownable {
     return projectId;
   }
 
+  function getProjectReport(uint idProject) constant returns (string t) {
+    Project memory p = projects[idProject];
+    return p.report;
+  }
+
+  function getJudgeVoted(uint idProject, address judge) constant returns (bool voted) {
+    Project memory p = projects[idProject];
+    if (p.voted[judge]) 
+      return true;
+       else 
+      return false;
+  }
 
   // get status of project 
   function getStatus(uint idProject) constant returns (uint t) {
     Project memory p = projects[idProject];
     return uint(p.status);
-  }
+  } 
 
   // is deadline 
   function isDeadline(uint idProject) constant returns (bool f) {
